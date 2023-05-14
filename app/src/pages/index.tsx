@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Card, Title, Text, Grid, Col } from "@tremor/react";
 import FileDropzone from "~/components/FileDropzone";
 import { useState } from "react";
+import { getPrediction } from "~/utils/hf";
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -24,11 +25,22 @@ const Home: NextPage = () => {
           {/* Main section */}
           <Col numColSpanLg={3}>
             <Card className=" h-full bg-gray-900 ring-black">
-              <div className="h-60">
+              <div>
                 <FileDropzone
                   selectedImage={selectedImage}
                   setSelectedImage={setSelectedImage}
                 />
+                {selectedImage && (
+                  <button
+                    className="rounded-md bg-gray-700 px-4 py-2 text-white"
+                    onClick={async () => {
+                      const prediction = await getPrediction(selectedImage);
+                      console.log(prediction);
+                    }}
+                  >
+                    Classify!
+                  </button>
+                )}
               </div>
             </Card>
           </Col>
