@@ -12,7 +12,7 @@
     "app/prettier.config.cjs": true,
     "app/public": true,
     "app/tsconfig.json": true,
-    "app/yarn.lock": true,
+    // "app/yarn.lock": true,
     "app\\.next": true
   }
 }
