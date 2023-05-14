@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Card, Title, Text, Grid, Col } from "@tremor/react";
+import FileDropzone from "~/components/FileDropzone";
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -21,11 +22,7 @@ const Home: NextPage = () => {
           <Col numColSpanLg={3}>
             <Card className=" h-full bg-gray-900 ring-black">
               <div className="h-60">
-                <input
-                  className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
-                  id="file_input"
-                  type="file"
-                ></input>
+                <FileDropzone />
               </div>
             </Card>
           </Col>
