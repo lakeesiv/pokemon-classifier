@@ -1,15 +1,43 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Card, Title, Text, Grid, Col } from "@tremor/react";
+import { Card, Title, Text, Grid, Col, Subtitle } from "@tremor/react";
 import FileDropzone from "~/components/FileDropzone";
 import { useState } from "react";
 import { getPrediction } from "~/utils/hf";
+import PredictionBarchart from "~/components/PredictionBarchart";
+
+const testData = [
+  {
+    score: 0.9467436671257019,
+    label: "Pikachu",
+  },
+  {
+    score: 0.0031691077165305614,
+    label: "Diglett",
+  },
+  {
+    score: 0.002073740353807807,
+    label: "Staryu",
+  },
+  {
+    score: 0.0012152899289503694,
+    label: "Weedle",
+  },
+  {
+    score: 0.0010524631943553686,
+    label: "Weepinbell",
+  },
+];
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const [selectedImage, setSelectedImage] = useState<File | undefined>(
     undefined
   );
+  const [prediction, setPrediction] = useState<
+    { score: number; label: string }[] | undefined
+  >(undefined);
+
   return (
     <>
       <Head>
@@ -36,6 +64,7 @@ const Home: NextPage = () => {
                     onClick={async () => {
                       const prediction = await getPrediction(selectedImage);
                       console.log(prediction);
+                      setPrediction(prediction);
                     }}
                   >
                     Classify!
@@ -49,10 +78,11 @@ const Home: NextPage = () => {
           <Col numColSpanLg={3}>
             <div className="space-y-6">
               <Card className="bg-gray-900 ring-black">
-                <div className="h-24" />
+                <PredictionBarchart predictions={testData} />
               </Card>
               <Card className="bg-gray-900 ring-black">
-                <div className="h-24" />
+                <Title>Prediction</Title>
+                <Subtitle>Most likely Pokemon: {testData[0].label}</Subtitle>
               </Card>
             </div>
           </Col>
