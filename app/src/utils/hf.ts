@@ -13,6 +13,13 @@ export const getPrediction = async (imgFile: File) => {
     method: "POST",
     body: imgBlob,
   });
-  const result = (await response.json()) as { label: string; score: number }[];
-  return result;
+  const result = (await response.json()) as
+    | { error: string }
+    | { label: string; score: number }[];
+
+  if ("error" in result) {
+    throw new Error(result.error);
+  }
+
+  return result as { label: string; score: number }[];
 };

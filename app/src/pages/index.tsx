@@ -39,9 +39,14 @@ const Home: NextPage = () => {
                   <button
                     className="rounded-md bg-gray-700 px-4 py-2 text-white"
                     onClick={async () => {
-                      const prediction = await getPrediction(selectedImage);
-                      console.log(prediction);
-                      setPrediction(prediction);
+                      try {
+                        const prediction = await getPrediction(selectedImage);
+                        console.log(prediction);
+                        setPrediction(prediction);
+                      } catch (error) {
+                        console.log(error);
+                        alert(error);
+                      }
                     }}
                   >
                     Classify!
@@ -60,7 +65,14 @@ const Home: NextPage = () => {
               </Card>
               <Card className="bg-gray-900 ring-black">
                 <Title>Prediction</Title>
-                <Subtitle>Most likely Pokemon: </Subtitle>
+                <Subtitle>
+                  Most likely Pokemon:{" "}
+                  {prediction
+                    ? prediction[0]
+                      ? prediction[0].label
+                      : "None"
+                    : "None"}
+                </Subtitle>
               </Card>
             </div>
           </Col>
