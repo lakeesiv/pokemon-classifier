@@ -6,29 +6,6 @@ import { useState } from "react";
 import { getPrediction } from "~/utils/hf";
 import PredictionBarchart from "~/components/PredictionBarchart";
 
-const testData = [
-  {
-    score: 0.9467436671257019,
-    label: "Pikachu",
-  },
-  {
-    score: 0.0031691077165305614,
-    label: "Diglett",
-  },
-  {
-    score: 0.002073740353807807,
-    label: "Staryu",
-  },
-  {
-    score: 0.0012152899289503694,
-    label: "Weedle",
-  },
-  {
-    score: 0.0010524631943553686,
-    label: "Weepinbell",
-  },
-];
-
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const [selectedImage, setSelectedImage] = useState<File | undefined>(
@@ -75,14 +52,15 @@ const Home: NextPage = () => {
           </Col>
 
           {/* KPI sidebar */}
+
           <Col numColSpanLg={3}>
             <div className="space-y-6">
               <Card className="bg-gray-900 ring-black">
-                <PredictionBarchart predictions={testData} />
+                <PredictionBarchart predictions={prediction} />
               </Card>
               <Card className="bg-gray-900 ring-black">
                 <Title>Prediction</Title>
-                <Subtitle>Most likely Pokemon: {testData[0].label}</Subtitle>
+                <Subtitle>Most likely Pokemon: </Subtitle>
               </Card>
             </div>
           </Col>
