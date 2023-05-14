@@ -2,10 +2,13 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Card, Title, Text, Grid, Col } from "@tremor/react";
 import FileDropzone from "~/components/FileDropzone";
+import { useState } from "react";
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
+  const [selectedImage, setSelectedImage] = useState<File | undefined>(
+    undefined
+  );
   return (
     <>
       <Head>
@@ -22,7 +25,10 @@ const Home: NextPage = () => {
           <Col numColSpanLg={3}>
             <Card className=" h-full bg-gray-900 ring-black">
               <div className="h-60">
-                <FileDropzone />
+                <FileDropzone
+                  selectedImage={selectedImage}
+                  setSelectedImage={setSelectedImage}
+                />
               </div>
             </Card>
           </Col>

@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
-const FileDropzone = () => {
-  const [selectedImage, setSelectedImage] = useState<File | undefined>(
-    undefined
-  );
+interface Props {
+  selectedImage: File | undefined;
+  setSelectedImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+}
 
+const FileDropzone = ({ selectedImage, setSelectedImage }: Props) => {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       {selectedImage && (
-        <div>
+        <div className="flex w-full flex-col items-center justify-center">
           <Image
             alt="not found"
-            width="200"
-            height="200"
+            width="400"
+            height="400"
             src={URL.createObjectURL(selectedImage)}
           />
           <br />
-          <button onClick={() => setSelectedImage(undefined)}>Remove</button>
+          <button
+            className="text-primary-foreground hover:bg-primary/90 h-9
+			rounded-md bg-gray-800 px-3 transition-colors hover:bg-gray-700
+		  "
+            onClick={() => setSelectedImage(undefined)}
+          >
+            Remove
+          </button>
         </div>
       )}
       {!selectedImage && (
