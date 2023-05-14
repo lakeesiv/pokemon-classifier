@@ -19,7 +19,7 @@ const Home: NextPage = () => {
         <Grid numColsLg={6} className="mt-6 gap-6 ">
           {/* Main section */}
           <Col numColSpanLg={3}>
-            <Card className="h-full border-gray-800 bg-gray-900">
+            <Card className=" h-full bg-gray-900 ring-black">
               <div className="h-60">
                 <input
                   className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
@@ -33,13 +33,11 @@ const Home: NextPage = () => {
           {/* KPI sidebar */}
           <Col numColSpanLg={3}>
             <div className="space-y-6">
-              <Card>
+              <Card className="bg-gray-900 ring-black">
                 <div className="h-24" />
-                Hello???
               </Card>
-              <Card>
+              <Card className="bg-gray-900 ring-black">
                 <div className="h-24" />
-                Hello???
               </Card>
             </div>
           </Col>
