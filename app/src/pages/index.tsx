@@ -20,7 +20,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Pokemon Classifier</title>
         <meta name="description" content="Pokemon Classifier" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-950 p-10">
         <Title>Pokemon Classifier - Lakee Sivaraya</Title>
