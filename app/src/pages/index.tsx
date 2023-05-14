@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="bg-gray-950 p-10">
         <Title>Pokemon Classifier - Lakee Sivaraya</Title>
-        <Text>Upload Image of Pokemon Below</Text>
+        <Text>Upload Image of Pokemon Below (Classifies Gen 1 Pokemon)</Text>
 
         <Grid numColsLg={6} className="mt-6 gap-6 ">
           {/* Main section */}
@@ -44,7 +44,9 @@ const Home: NextPage = () => {
                         setPrediction(prediction);
                       } catch (error) {
                         console.log(error);
-                        alert(error);
+                        alert(
+                          "Error Please wait for model to load on the server"
+                        );
                       }
                     }}
                   >
