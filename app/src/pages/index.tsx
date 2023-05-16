@@ -36,39 +36,36 @@ const Home: NextPage = () => {
                 <FileDropzone
                   selectedImage={selectedImage}
                   setSelectedImage={setSelectedImage}
-                />
-                {selectedImage && (
-                  <button
-                    className="rounded-md bg-gray-700 px-4 py-2 text-white"
-                    onClick={async () => {
-                      toast({
-                        title: "Classifying Image",
-                        description: "Please wait",
-                      });
+                  onClassify={async () => {
+                    toast({
+                      title: "Classifying Image",
+                      description: "Please wait",
+                    });
 
-                      try {
-                        const prediction = await getPrediction(selectedImage);
-                        console.log(prediction);
-                        setPrediction(prediction);
-                        toast({
-                          title: "Image Classified",
-                          description:
-                            "Please see the sidebar for the prediction",
-                        });
-                      } catch (error) {
-                        console.log(error);
-                        toast({
-                          title: "Please wait for the model to load",
-                          description:
-                            "Please wait around 1min seconds for the model to load",
-                          variant: "destructive",
-                        });
+                    try {
+                      if (!selectedImage) {
+                        return;
                       }
-                    }}
-                  >
-                    Classify!
-                  </button>
-                )}
+
+                      const prediction = await getPrediction(selectedImage);
+                      console.log(prediction);
+                      setPrediction(prediction);
+                      toast({
+                        title: "Image Classified",
+                        description:
+                          "Please see the sidebar for the prediction",
+                      });
+                    } catch (error) {
+                      console.log(error);
+                      toast({
+                        title: "Please wait for the model to load",
+                        description:
+                          "Please wait around 1min seconds for the model to load",
+                        variant: "destructive",
+                      });
+                    }
+                  }}
+                />
               </div>
             </Card>
           </Col>

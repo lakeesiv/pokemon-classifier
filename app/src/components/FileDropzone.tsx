@@ -4,9 +4,14 @@ import Image from "next/image";
 interface Props {
   selectedImage: File | undefined;
   setSelectedImage: React.Dispatch<React.SetStateAction<File | undefined>>;
+  onClassify: () => void;
 }
 
-const FileDropzone = ({ selectedImage, setSelectedImage }: Props) => {
+const FileDropzone = ({
+  selectedImage,
+  setSelectedImage,
+  onClassify,
+}: Props) => {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       {selectedImage && (
@@ -18,14 +23,24 @@ const FileDropzone = ({ selectedImage, setSelectedImage }: Props) => {
             src={URL.createObjectURL(selectedImage)}
           />
           <br />
-          <button
-            className="text-primary-foreground hover:bg-primary/90 h-9
-			rounded-md bg-gray-800 px-3 transition-colors hover:bg-gray-700
-		  "
-            onClick={() => setSelectedImage(undefined)}
-          >
-            Remove
-          </button>
+          <div className="flex w-full flex-row  justify-center space-x-4">
+            <button
+              className="text-primary-foreground hover:bg-primary/90 h-9
+                  rounded-md bg-gray-800 px-3 transition-colors hover:bg-gray-700
+                  "
+              onClick={() => setSelectedImage(undefined)}
+            >
+              Remove
+            </button>
+            <button
+              className="text-primary-foreground hover:bg-primary/90 h-9
+                  rounded-md bg-red-700 px-3 transition-colors hover:bg-red-600
+                  "
+              onClick={() => onClassify()}
+            >
+              Classify
+            </button>
+          </div>
         </div>
       )}
       {!selectedImage && (
