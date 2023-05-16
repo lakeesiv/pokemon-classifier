@@ -5,9 +5,12 @@ import FileDropzone from "~/components/FileDropzone";
 import { useState } from "react";
 import { getPrediction } from "~/utils/hf";
 import PredictionBarchart from "~/components/PredictionBarchart";
+import { useToast } from "~/ui/use-toast";
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { toast } = useToast();
+
   const [selectedImage, setSelectedImage] = useState<File | undefined>(
     undefined
   );
@@ -38,15 +41,28 @@ const Home: NextPage = () => {
                   <button
                     className="rounded-md bg-gray-700 px-4 py-2 text-white"
                     onClick={async () => {
+                      toast({
+                        title: "Classifying Image",
+                        description: "Please wait",
+                      });
+
                       try {
                         const prediction = await getPrediction(selectedImage);
                         console.log(prediction);
                         setPrediction(prediction);
+                        toast({
+                          title: "Image Classified",
+                          description:
+                            "Please see the sidebar for the prediction",
+                        });
                       } catch (error) {
                         console.log(error);
-                        alert(
-                          "Error Please wait for model to load on the server"
-                        );
+                        toast({
+                          title: "Please wait for the model to load",
+                          description:
+                            "Please wait around 1min seconds for the model to load",
+                          variant: "destructive",
+                        });
                       }
                     }}
                   >
