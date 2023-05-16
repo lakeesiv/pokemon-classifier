@@ -54,6 +54,8 @@ const PredictionBarchart = ({ predictions }: Props) => {
         categories={["Prediction"]}
         colors={["red"]}
         yAxisWidth={48}
+        maxValue={100}
+        showGridLines={false}
       />
     </Card>
   );
